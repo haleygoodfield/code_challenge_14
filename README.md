@@ -1,5 +1,5 @@
 # My Fourteenth Coding Challenge
-Hello again! This is my thirteenth coding challenge using JavaScript. Here, I will apply my skills in DOM manipulation to dynamically add, update, and remove support tickets to create an interactive Customer Support Ticket System for managing support requests in a company. 
+This is my fourteenth coding challenge using JavaScript. Here, I will apply my skills in DOM manipulation to dynamically add, update, and remove support tickets to create an interactive **Customer Support Ticket System** for managing support requests in a company. 
 This scenario will be split into 5 Tasks: 
 + Task 1: Creating the Base Structure
 + Task 2: Adding Support Tickets Dynamically
