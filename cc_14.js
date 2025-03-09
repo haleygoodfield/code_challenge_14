@@ -26,8 +26,10 @@ function addSupportTicket(customerName, issueDesc, priorityLvl) {
     resolveBtn.textContent = "Resolve";
     resolveBtn.classList.add("resolve-btn");
 
-    resolveBtn.onclick = function () { // function to remove ticket when button is clicked 
-        container.removeChild(ticket)
+    resolveBtn.onclick = function (event) { // function to remove ticket when button is clicked 
+        // Task 4
+        event.stopPropagation(); // Use stopPropagation() in the "Resolve" button’s event handler to prevent bubbling
+        container.removeChild(ticket); // Attach a click event listener to the "Resolve" button that removes its parent ticket using removeChild.
         highlightHighPriorityTickets(); // Updates highlighting
     };
     
@@ -51,15 +53,23 @@ function highlightHighPriorityTickets() { // Use document.querySelectorAll to se
  
     //  Convert the NodeList into an array using Array.from() 
     Array.from(highPriorityTickets).forEach(ticket => { // // Use an array method (forEach()) to update the appearance of high-priority tickets
-        ticket.style.backgroundColor = "rgb(237, 180, 208)"; // Changing background color
-        ticket.style.fontWeight = "bold"; // Change text to bold
-        ticket.style.border = "2px solid black"; // Change border to black   
+        ticket.style.backgroundColor = "rgb(237, 180, 208)"; // Changing background color  
     });
 }
 
-// See if task 3 the stuff above can be deleted if its also in html 
+// Task 4: Implementing Ticket Resolution with Event Bubbling
+// Attach a click event listener to "ticketContainer" that logs a message when any ticket is clicked
+document.getElementById("ticketContainer").addEventListener("click", function (event) {
+    if (event.target.classList.contains("support-ticket")) {
+        console.log("Support ticket clicked", event.target); // Message logged when ticket is clicked 
+    } else {
+        console.log("Click occured ouside of support ticket"); // Message logged when ticket is not clicked
+    }
+});
 
 // Test Cases
 addSupportTicket("Bethany Mejia", "Printer not working", "Low");
 addSupportTicket("Deana Jefferson", "Cybersecurity breach", "High");
 addSupportTicket("Zara Holloway","Software problems", "Medium");
+
+// Task 5: 
