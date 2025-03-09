@@ -20,7 +20,7 @@ function addSupportTicket(customerName, issueDesc, priorityLvl) {
     // Task 3 
     if (priorityLvl.trim().toLowerCase () === "high") { // High priority issues added to special class for highlighting 
         ticket.classList.add("high-priority");
-    }
+    };
     
     const resolveBtn = document.createElement("button"); // "Resolve" button to remove the ticket
     resolveBtn.textContent = "Resolve";
@@ -32,7 +32,10 @@ function addSupportTicket(customerName, issueDesc, priorityLvl) {
         container.removeChild(ticket); // Attach a click event listener to the "Resolve" button that removes its parent ticket using removeChild.
         highlightHighPriorityTickets(); // Updates highlighting
     };
-    
+    // Task 5
+    ticket.ondblclick= function () { // Add an event listener to each support ticket that on double-click, swaps static content with input fields
+        enableEditing(ticket, nameHeading, issueParagraph, priorityLabel);
+    };
     // Appends the elements to ticket using appendChild
     ticket.appendChild(nameHeading);
     ticket.appendChild(issueParagraph);
@@ -44,7 +47,7 @@ function addSupportTicket(customerName, issueDesc, priorityLvl) {
 
     // Added to ensure ticket is highlighted 
     highlightHighPriorityTickets();
-}
+};
 
 
 // Task 3: Highlighting High Priority Tickets
@@ -55,7 +58,7 @@ function highlightHighPriorityTickets() { // Use document.querySelectorAll to se
     Array.from(highPriorityTickets).forEach(ticket => { // // Use an array method (forEach()) to update the appearance of high-priority tickets
         ticket.style.backgroundColor = "rgb(237, 180, 208)"; // Changing background color  
     });
-}
+};
 
 // Task 4: Implementing Ticket Resolution with Event Bubbling
 // Attach a click event listener to "ticketContainer" that logs a message when any ticket is clicked
@@ -67,9 +70,62 @@ document.getElementById("ticketContainer").addEventListener("click", function (e
     }
 });
 
+// Task 5: Additional Challenge – Inline Editing of Support Tickets
+function enableEditing(ticket, nameElement, issueElement, priorityElement) {
+    
+    // Edit customer name 
+    const nameInput = document.createElement("input");
+    nameInput.type = "text";
+    nameInput.value = nameElement.textContent;
+
+     // Edit customer issue 
+    const issueInput = document.createElement("input");
+    issueInput.type = "text";
+    issueInput.value = issueElement.textContent;
+
+     // Edit customer priority  
+    const priorityInput = document.createElement("input");
+    priorityInput.type = "text";
+    priorityInput.value = priorityElement.textContent;
+
+    // Provide a mechanism - "Save" button) 
+    const saveButton = document.createElement("button");
+    saveButton.textContent = "Save";
+
+    // Clears the ticket and adds new fields
+    ticket.innerHTML = "";
+    ticket.appendChild(nameInput);
+    ticket.appendChild(issueInput);
+    ticket.appendChild(priorityInput);
+    ticket.appendChild(saveButton);
+
+    // Saves the changes made
+    saveButton.onclick = function () {
+        nameElement.textContent = nameInput.value;
+        issueElement.textContent = issueInput.value;
+        priorityElement.textContent = priorityInput.value;
+    
+        ticket.innerHTML = "";
+        ticket.appendChild(nameElement);
+        ticket.appendChild(issueElement);
+        ticket.appendChild(priorityElement);
+
+        const resolveBtn = document.createElement("button");
+        resolveBtn.textContent = "Resolve";
+        resolveBtn.classList.add("resolve-btn");
+        resolveBtn.onclick = function (event) {
+            event.stopPropagation();
+            ticket.parentElement.removeChild(ticket);
+            highlightHighPriorityTickets();
+        };
+
+        ticket.appendChild(resolveBtn);
+
+        highlightHighPriorityTickets();
+    };
+};
+
 // Test Cases
 addSupportTicket("Bethany Mejia", "Printer not working", "Low");
 addSupportTicket("Deana Jefferson", "Cybersecurity breach", "High");
 addSupportTicket("Zara Holloway","Software problems", "Medium");
-
-// Task 5: 
