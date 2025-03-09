@@ -4,9 +4,59 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JavaScript Coding Challenge</title>
+    <style>
+         body {
+            font-family: Georgia, 'Times New Roman', Times, serif, sans-serif;
+            margin: 20px;
+            padding: 20px;
+            background-color:mistyrose;
+        }
+        header, footer {
+            padding: 10px;
+            margin: 10px;
+            background-color: rgb(242, 225, 255);
+            border-radius: 5px;
+            width: 620px;
+            display: block;
+        }
+        .employee-card {
+            margin: 20px;
+            padding: 20px;
+            border-radius: 5px;
+            width: 550px;
+        }
+        main {
+            cursor: pointer;
+            color: rgb(182, 60, 150);
+        }
+        #ticketContainer {
+            padding: 10px;
+            margin: 5px;
+            background-color: rgb(241, 212, 252);
+            border-radius: 5px;
+            width: 620px;
+            cursor: pointer;
+        } 
+        .highlight {
+            background-color: rgb(255, 198, 241);
+            border: 2px rgb(244, 231, 244);
+        }
+    </style>
 </head>
-<body>
-    <h1>Coding Challenge 14: Customer Support Ticket System</h1>
+<!--Task 1: Creating the Base Structure-->
+<body> 
+    <header> <!--Use semantic HTML elements like <header>-->
+        <h1>Customer Support Ticket System</h1>
+    </header>
+    <main> <!--Use semantic HTML elements like <main>-->
+    <!--Within <main>, create a container <div> with the id "employeeContainer" -->
+        <div id="ticketContainer">
+            <h2>Ticket Container</h2>
+        </div>
+    </main>
+    <footer> <!--Use semantic HTML elements like <footer>-->
+        <p>Coding Challenge Fourteen</p>
+    </footer>
     <script src="cc_14.js"></script>
 </body>
 </html>
