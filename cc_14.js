@@ -73,43 +73,43 @@ document.getElementById("ticketContainer").addEventListener("click", function (e
 // Task 5: Additional Challenge – Inline Editing of Support Tickets
 function enableEditing(ticket, nameElement, issueElement, priorityElement) {
     
-    // Edit customer name 
+    // Pre-populate the input fields with the existing customer name, issue, and priority level
     const nameInput = document.createElement("input");
     nameInput.type = "text";
-    nameInput.value = nameElement.textContent;
+    nameInput.value = nameElement.textContent; // Name field
 
-     // Edit customer issue 
     const issueInput = document.createElement("input");
     issueInput.type = "text";
-    issueInput.value = issueElement.textContent;
+    issueInput.value = issueElement.textContent; // Issue field
 
-     // Edit customer priority  
-    const priorityInput = document.createElement("input");
+    const priorityInput = document.createElement("input"); 
     priorityInput.type = "text";
-    priorityInput.value = priorityElement.textContent;
+    priorityInput.value = priorityElement.textContent; //Priority field 
 
-    // Provide a mechanism - "Save" button) 
+    // Provide a mechanism - "Save" button
     const saveButton = document.createElement("button");
     saveButton.textContent = "Save";
 
-    // Clears the ticket and adds new fields
+    // Add an event listener to each support ticket (or an edit button within it) that on double-click, swaps static content with input fields
     ticket.innerHTML = "";
     ticket.appendChild(nameInput);
     ticket.appendChild(issueInput);
     ticket.appendChild(priorityInput);
     ticket.appendChild(saveButton);
 
-    // Saves the changes made
+    // Ensure the updated details are reflected, and the inputs revert back to static text
     saveButton.onclick = function () {
-        nameElement.textContent = nameInput.value;
-        issueElement.textContent = issueInput.value;
-        priorityElement.textContent = priorityInput.value;
+        nameElement.textContent = nameInput.value; // will update the name
+        issueElement.textContent = issueInput.value; // will update the issue
+        priorityElement.textContent = priorityInput.value; // will update priority 
     
+        // Restore the ticket structure with new values
         ticket.innerHTML = "";
         ticket.appendChild(nameElement);
         ticket.appendChild(issueElement);
         ticket.appendChild(priorityElement);
 
+        // Recreate the resolve button
         const resolveBtn = document.createElement("button");
         resolveBtn.textContent = "Resolve";
         resolveBtn.classList.add("resolve-btn");
@@ -118,10 +118,7 @@ function enableEditing(ticket, nameElement, issueElement, priorityElement) {
             ticket.parentElement.removeChild(ticket);
             highlightHighPriorityTickets();
         };
-
         ticket.appendChild(resolveBtn);
-
-        highlightHighPriorityTickets();
     };
 };
 
