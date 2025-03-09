@@ -71,6 +71,7 @@ document.getElementById("ticketContainer").addEventListener("click", function (e
 });
 
 // Task 5: Additional Challenge – Inline Editing of Support Tickets
+// (Instructions said support ticket can either be double clicked - or an edit button - double-click to replace text)
 function enableEditing(ticket, nameElement, issueElement, priorityElement) {
     
     // Pre-populate the input fields with the existing customer name, issue, and priority level
