@@ -8,6 +8,7 @@ function addSupportTicket(customerName, issueDesc, priorityLvl) {
     ticket.setAttribute("class", "support-ticket"); // Set attributes (class & id) using setAttribute
 
     const nameHeading = document.createElement("h3"); // heading for the customer’s name
+    nameHeading.textContent = customerName; 
 
     const issueParagraph = document.createElement("p"); // paragraph for the issue description
     issueParagraph.textContent = issueDesc;
@@ -38,3 +39,5 @@ function addSupportTicket(customerName, issueDesc, priorityLvl) {
 addSupportTicket("Bethany Mejia", "Printer not working", "Low Priority ");
 addSupportTicket("Deana Jefferson", "Cybersecurity breach", "High Priority ");
 addSupportTicket("Zara Holloway","Software problems", "Medium Priority ");
+
+// Task 3: Highlighting High Priority Tickets
