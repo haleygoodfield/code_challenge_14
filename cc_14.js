@@ -14,12 +14,12 @@ function addSupportTicket(customerName, issueDesc, priorityLvl) {
     issueParagraph.textContent = issueDesc;
 
     const priorityLabel = document.createElement("span"); // label indicating priority level.
-    priorityLabel.textContent = priorityLvl; 
-    priorityLabel.classList.add("priority-label");
+    priorityLabel.textContent = `Priority: ${priorityLvl}`; 
+    priorityLabel.classList.add("priority-label"); // Attempting to apply priority to ticket
 
     // Task 3 
-    if (priorityLvl.trim().tooLowerCase === "high") { // High priority issues added to special class for highlighting 
-        priorityLabel.classList.add("high-priority");
+    if (priorityLvl.trim().toLowerCase () === "high") { // High priority issues added to special class for highlighting 
+        ticket.classList.add("high-priority");
     }
     
     const resolveBtn = document.createElement("button"); // "Resolve" button to remove the ticket
@@ -27,7 +27,8 @@ function addSupportTicket(customerName, issueDesc, priorityLvl) {
     resolveBtn.classList.add("resolve-btn");
 
     resolveBtn.onclick = function () { // function to remove ticket when button is clicked 
-        container.removeChild(ticket);
+        container.removeChild(ticket)
+        highlightHighPriorityTickets(); // Updates highlighting
     };
     
     // Appends the elements to ticket using appendChild
@@ -39,7 +40,7 @@ function addSupportTicket(customerName, issueDesc, priorityLvl) {
     // Appends the ticket to the container using appendChild
     container.appendChild(ticket);
 
-    // Highlights the ticket after adding a ticket
+    // Added to ensure ticket is highlighted 
     highlightHighPriorityTickets();
 }
 
@@ -50,12 +51,13 @@ function highlightHighPriorityTickets() { // Use document.querySelectorAll to se
  
     //  Convert the NodeList into an array using Array.from() 
     Array.from(highPriorityTickets).forEach(ticket => { // // Use an array method (forEach()) to update the appearance of high-priority tickets
-        ticket.parentElement.style.backgroundColor = "rgb(211, 174, 201)"; // Changing background color
-        ticket.parentElement.style.fontWeight = "bold"; // Change text to bold    
+        ticket.style.backgroundColor = "rgb(237, 180, 208)"; // Changing background color
+        ticket.style.fontWeight = "bold"; // Change text to bold
+        ticket.style.border = "2px solid black"; // Change border to black   
     });
 }
 
-// Task 3 doesnt do anything?? 
+// See if task 3 the stuff above can be deleted if its also in html 
 
 // Test Cases
 addSupportTicket("Bethany Mejia", "Printer not working", "Low");
